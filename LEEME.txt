@@ -1,0 +1,27 @@
+TEBAN BARBER - SITIO LISTO PARA PUBLICAR
+========================================
+
+Esta carpeta ya es el sitio completo (no necesita instalar ni compilar nada):
+
+  index.html        la página
+  img/              fotos y logo
+  media/            videos
+  vercel.json       ajustes para Vercel
+  favicon.png, apple-touch-icon.png   iconos
+
+OPCION 1 - Vercel desde la terminal (la más rápida, 2 minutos)
+  1. Instalar Node.js (nodejs.org) y luego:  npm i -g vercel
+  2. Entrar a esta carpeta y ejecutar:       vercel login
+  3. Publicar:                               vercel --prod
+  Vercel entrega el link público al terminar.
+
+OPCION 2 - Vercel desde GitHub
+  1. Subir el contenido de esta carpeta a un repositorio de GitHub.
+  2. En vercel.com: Add New > Project > importar el repositorio.
+  3. Framework Preset: "Other". Dejar lo demás vacío y pulsar Deploy.
+
+DOMINIO PROPIO
+  En Vercel: el proyecto > Settings > Domains > agregar el dominio.
+
+PARA CAMBIAR UNA FOTO O VIDEO
+  Reemplazar el archivo en img/ o media/ conservando el mismo nombre.
