@@ -133,6 +133,21 @@ svg.i{width:16px;height:16px;flex:none}
 .ping::after{content:"";position:relative;width:8px;height:8px;border-radius:50%;background:var(--gold)}
 @keyframes ping{75%,100%{transform:scale(2);opacity:0}}
 
+/* ============ IDIOMA: selector en la portada y en la barra ============ */
+.langpick{display:flex;flex-direction:column;align-items:center;gap:.85rem;margin-top:.55rem;animation:fade 1s ease 1.9s both}
+.lp-t{margin:0;display:flex;flex-direction:column;align-items:center;gap:.25rem;font-size:.66rem;letter-spacing:.22em;line-height:1.5;text-transform:uppercase;color:var(--soft)}
+.lp-t span+span{color:var(--dim)}
+.lp-b{display:flex;gap:.75rem}
+.lp-b .pill{min-width:8rem;min-height:44px;font-size:.72rem}
+.langpick.done{animation:lp-out .45s ease both;pointer-events:none}
+@keyframes lp-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-8px);visibility:hidden}}
+.langsw{display:none;align-items:center;gap:.3rem;font-family:var(--f-accent);font-weight:600;font-size:.7rem;letter-spacing:.16em;color:var(--dim)}
+.langsw button{appearance:none;-webkit-appearance:none;background:none;border:0;border-bottom:1px solid transparent;border-radius:0;padding:.35rem .25rem;font:inherit;letter-spacing:inherit;color:var(--muted);cursor:pointer;transition:color .2s}
+.langsw button:hover,.langsw button:focus-visible{color:var(--gold-hi)}
+.langsw button[aria-pressed="true"]{color:var(--gold-hi);border-bottom-color:var(--gold)}
+.langsw-menu{display:inline-flex;font-size:.95rem;margin-top:.4rem}
+@media(min-width:820px){.nav-r .langsw{display:inline-flex;margin-right:.6rem}}
+
 /* ============ NAV (después del hero) ============ */
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(0,0,0,.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(216,180,90,.08)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px}
@@ -308,6 +323,7 @@ svg.i{width:16px;height:16px;flex:none}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .badge{transform:none;opacity:1;pointer-events:auto}
+  .langpick.done{opacity:0;visibility:hidden}
 }
 </style>
 </head>
@@ -328,44 +344,53 @@ svg.i{width:16px;height:16px;flex:none}
   <div class="veil" aria-hidden="true"></div>
   <div class="hero-block">
     <div class="lift">
-      <h1 class="sr">Teban Barber, barbero privado en Medellín</h1>
-      <div class="logo" role="img" aria-label="Logo de Teban Barber"><img src="img/logo.webp" alt="" width="820" height="811" decoding="async" fetchpriority="high"></div>
-      <p class="tag">Barbería privada y asesoría de imagen</p>
+      <h1 class="sr" data-en="Teban Barber, private barber in Medellín">Teban Barber, barbero privado en Medellín</h1>
+      <div class="logo" role="img" aria-label="Logo de Teban Barber" data-en-aria-label="Teban Barber logo"><img src="img/logo.webp" alt="" width="820" height="811" decoding="async" fetchpriority="high"></div>
+      <p class="tag" data-en="Private barbershop &amp; image consulting">Barbería privada y asesoría de imagen</p>
+      <div class="langpick" id="langpick" role="group" aria-label="Idioma / Language">
+        <p class="lp-t"><span lang="es">Elige tu idioma</span><span lang="en">Choose your language</span></p>
+        <div class="lp-b">
+          <button type="button" class="pill pill-line" data-lang="es" lang="es" aria-pressed="false">Español</button>
+          <button type="button" class="pill pill-line" data-lang="en" lang="en" aria-pressed="false">English</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="sc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
 </header>
 
-<nav class="nav" aria-label="Principal">
+<nav class="nav" aria-label="Principal" data-en-aria-label="Main">
   <div class="wrap nav-in">
     <a class="wm" href="#inicio">Teban Barber</a>
     <div class="pillnav" id="pillnav">
       <i class="lit" id="lit"></i>
       <ul>
-        <li><a href="#teban" data-id="teban" aria-current="false" aria-label="Sobre Teban Barber" title="Sobre Teban Barber"><span class="nav-logo" aria-hidden="true"></span></a></li>
-        <li><a href="#servicios" data-id="servicios" aria-current="false">Servicios</a></li>
-        <li><a href="#accion" data-id="accion" aria-current="false">Experiencias</a></li>
-        <li><a href="#reservas" data-id="reservas" aria-current="false">Reservas</a></li>
+        <li><a href="#teban" data-id="teban" aria-current="false" aria-label="Sobre Teban Barber" title="Sobre Teban Barber" data-en-aria-label="About Teban Barber" data-en-title="About Teban Barber"><span class="nav-logo" aria-hidden="true"></span></a></li>
+        <li><a href="#servicios" data-id="servicios" aria-current="false" data-en="Services">Servicios</a></li>
+        <li><a href="#accion" data-id="accion" aria-current="false" data-en="Experiences">Experiencias</a></li>
+        <li><a href="#reservas" data-id="reservas" aria-current="false" data-en="Booking">Reservas</a></li>
       </ul>
     </div>
     <div class="nav-r">
-      <a class="pill pill-sm" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20una%20cita%20de%20barber%C3%ADa%20privada." target="_blank" rel="noopener">Reservar</a>
-      <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+            <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language"><button type="button" data-lang="es" lang="es" aria-pressed="true" aria-label="Español">ES</button><span aria-hidden="true">·</span><button type="button" data-lang="en" lang="en" aria-pressed="false" aria-label="English">EN</button></div>
+      <a class="pill pill-sm" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20una%20cita%20de%20barber%C3%ADa%20privada." data-en-href="https://wa.me/573194477905?text=Hi%20Teban%2C%20I%27d%20like%20to%20book%20a%20private%20barbershop%20appointment." data-en="Book" target="_blank" rel="noopener">Reservar</a>
+      <button class="burger" id="burger" type="button" aria-label="Abrir menú" data-en-aria-label="Open menu" aria-expanded="false" aria-controls="menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
 </nav>
 
-<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menú" aria-hidden="true" inert>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menú" data-en-aria-label="Menu" aria-hidden="true" inert>
   <div class="menu-top">
     <span class="wm">Teban Barber</span>
-    <button class="burger" id="close" type="button" aria-label="Cerrar menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="burger" id="close" type="button" aria-label="Cerrar menú" data-en-aria-label="Close menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
-  <nav class="menu-links" aria-label="Menú móvil">
-    <a href="#teban" aria-label="Sobre Teban Barber"><span class="nav-logo nav-logo-lg" aria-hidden="true"></span></a>
-    <a href="#servicios">Servicios</a>
-    <a href="#accion">Experiencias</a>
-    <a href="#reservas">Reservas</a>
-    <a class="pill" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20una%20cita%20de%20barber%C3%ADa%20privada." target="_blank" rel="noopener">Reservar por WhatsApp</a>
+  <nav class="menu-links" aria-label="Menú móvil" data-en-aria-label="Mobile menu">
+    <a href="#teban" aria-label="Sobre Teban Barber" data-en-aria-label="About Teban Barber"><span class="nav-logo nav-logo-lg" aria-hidden="true"></span></a>
+    <a href="#servicios" data-en="Services">Servicios</a>
+    <a href="#accion" data-en="Experiences">Experiencias</a>
+    <a href="#reservas" data-en="Booking">Reservas</a>
+    <a class="pill" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20una%20cita%20de%20barber%C3%ADa%20privada." data-en-href="https://wa.me/573194477905?text=Hi%20Teban%2C%20I%27d%20like%20to%20book%20a%20private%20barbershop%20appointment." data-en="Book on WhatsApp" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+    <div class="langsw langsw-menu" role="group" aria-label="Idioma" data-en-aria-label="Language"><button type="button" data-lang="es" lang="es" aria-pressed="true" aria-label="Español">ES</button><span aria-hidden="true">·</span><button type="button" data-lang="en" lang="en" aria-pressed="false" aria-label="English">EN</button></div>
   </nav>
   <p class="menu-foot">Teban Barber © 2026</p>
 </div>
@@ -373,14 +398,14 @@ svg.i{width:16px;height:16px;flex:none}
 <main>
   <section class="sec" id="teban">
     <div class="wrap about">
-      <div class="rv"><div class="arch"><div class="ph" role="img" aria-label="Esteban González, Teban Barber, con una máquina de corte en la mano"></div><b class="foil">+8</b><span>años de trayectoria</span></div></div>
+      <div class="rv"><div class="arch"><div class="ph" role="img" aria-label="Esteban González, Teban Barber, con una máquina de corte en la mano" data-en-aria-label="Esteban González, Teban Barber, holding a hair clipper"></div><b class="foil">+8</b><span data-en="years of experience">años de trayectoria</span></div></div>
       <div class="about-copy">
-        <h2 class="t rv" style="--i:0">Sobre Teban Barber</h2>
-        <p class="rv" style="--i:1">Soy Esteban González, barbero en Medellín con <strong>8 años de experiencia</strong>. Entiendo cada corte como una pieza única, pensada para la imagen que quieres proyectar.</p>
-        <p class="rv" style="--i:2">Trabajo solo con <strong>cita previa</strong>. Cada sesión es privada, sin prisas y con toda la atención puesta en una sola persona: tú.</p>
-        <p class="rv" style="--i:3">Llevo mi trabajo a donde estés: espacios corporativos, casas y apartamentos privados en Medellín, fincas y el hotel donde te hospedes.</p>
-        <p class="rv" style="--i:4">Un servicio <strong>hecho a tu medida</strong>, donde la comodidad, el estilo y la exclusividad van de la mano.</p>
-        <a class="pill pill-ghost rv" style="--i:5" href="#servicios">Ver servicios</a>
+        <h2 class="t rv" style="--i:0" data-en="About Teban Barber">Sobre Teban Barber</h2>
+        <p class="rv" style="--i:1" data-en="I’m Esteban González, a barber in Medellín with <strong>8 years of experience</strong>. I treat every cut as a one-of-a-kind piece, designed around the image you want to project.">Soy Esteban González, barbero en Medellín con <strong>8 años de experiencia</strong>. Entiendo cada corte como una pieza única, pensada para la imagen que quieres proyectar.</p>
+        <p class="rv" style="--i:2" data-en="I work <strong>by appointment only</strong>. Every session is private, unhurried, and gives my full attention to one person: you.">Trabajo solo con <strong>cita previa</strong>. Cada sesión es privada, sin prisas y con toda la atención puesta en una sola persona: tú.</p>
+        <p class="rv" style="--i:3" data-en="I bring my work wherever you are: corporate spaces, private homes and apartments in Medellín, country estates, and the hotel where you’re staying.">Llevo mi trabajo a donde estés: espacios corporativos, casas y apartamentos privados en Medellín, fincas y el hotel donde te hospedes.</p>
+        <p class="rv" style="--i:4" data-en="A service <strong>tailored to you</strong>, where comfort, style, and exclusivity go hand in hand.">Un servicio <strong>hecho a tu medida</strong>, donde la comodidad, el estilo y la exclusividad van de la mano.</p>
+        <a class="pill pill-ghost rv" style="--i:5" href="#servicios" data-en="View services">Ver servicios</a>
       </div>
     </div>
   </section>
@@ -388,33 +413,33 @@ svg.i{width:16px;height:16px;flex:none}
   <section class="sec" id="servicios">
     <div class="wrap">
       <div class="head rv">
-        <h2>Servicios</h2>
-        <p>Llevo la experiencia a ti</p>
+        <h2 data-en="Services">Servicios</h2>
+        <p data-en="I bring the experience to you">Llevo la experiencia a ti</p>
       </div>
       <div class="cards">
         <div class="cell cell-half cell-geo rv" style="--i:0">
           <article class="card card-geo">
-            <div class="fig fig-geo"><img class="geo" src="img/guatape.webp" alt="Vista aérea del Peñón de Guatapé y el embalse" width="1200" height="900" loading="lazy" decoding="async"><div class="fig-in">
-              <span class="lbl">On Location</span>
-              <p class="price"><span>desde</span><b class="foil">$150</b><span>USD</span></p>
+            <div class="fig fig-geo"><img class="geo" src="img/guatape.webp" alt="Vista aérea del Peñón de Guatapé y el embalse" data-en-alt="Aerial view of the Guatapé Rock and the reservoir" width="1200" height="900" loading="lazy" decoding="async"><div class="fig-in">
+              <span class="lbl" data-en="At your destination">En tu destino</span>
+              <p class="price"><span data-en="from">desde</span><b class="foil">$150</b><span>USD</span></p>
             </div></div>
             <div class="cbody">
-              <h3>Fuera de Medellín</h3>
-              <p>Llevo mi estación completa a tu destino. Coordino contigo fecha, lugar y detalles por WhatsApp.</p>
-              <div class="crow"><span class="chip">A coordinar</span><a class="pill pill-line" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20un%20servicio%20fuera%20de%20Medell%C3%ADn." target="_blank" rel="noopener">Agendar</a></div>
+              <h3 data-en="Outside Medellín">Fuera de Medellín</h3>
+              <p data-en="I bring my full station to your destination. We arrange the date, place, and details together over WhatsApp.">Llevo mi estación completa a tu destino. Coordino contigo fecha, lugar y detalles por WhatsApp.</p>
+              <div class="crow"><span class="chip" data-en="To be arranged">A coordinar</span><a class="pill pill-line" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20un%20servicio%20fuera%20de%20Medell%C3%ADn." data-en-href="https://wa.me/573194477905?text=Hi%20Teban%2C%20I%27d%20like%20to%20book%20a%20service%20outside%20Medell%C3%ADn." data-en="Book" target="_blank" rel="noopener">Agendar</a></div>
             </div>
           </article>
         </div>
         <div class="cell cell-half cell-vip rv" style="--i:1">
           <article class="card card-vip">
             <div class="fig fig-vid"><video muted loop playsinline preload="none" poster="img/pvip.webp" aria-hidden="true" tabindex="-1"><source src="media/vip.mp4" type="video/mp4"></video><div class="fig-in">
-              <span class="lbl">VIP Experience</span>
-              <p class="price"><span>desde</span><b class="foil">$120</b><span>USD</span></p>
+              <span class="lbl" data-en="VIP Experience">Experiencia VIP</span>
+              <p class="price"><span data-en="from">desde</span><b class="foil">$120</b><span>USD</span></p>
             </div></div>
             <div class="cbody">
-              <h3>Servicio VIP</h3>
-              <p>Una experiencia de cuidado completa en tu espacio: desde mascarillas hasta masajes.</p>
-              <div class="crow"><span class="chip">Experiencia completa</span><a class="pill pill-line" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20el%20servicio%20VIP." target="_blank" rel="noopener">Agendar</a></div>
+              <h3 data-en="VIP Service">Servicio VIP</h3>
+              <p data-en="A complete grooming experience in your own space: from face masks to massages.">Una experiencia de cuidado completa en tu espacio: desde mascarillas hasta masajes.</p>
+              <div class="crow"><span class="chip" data-en="Full experience">Experiencia completa</span><a class="pill pill-line" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20el%20servicio%20VIP." data-en-href="https://wa.me/573194477905?text=Hi%20Teban%2C%20I%27d%20like%20to%20book%20the%20VIP%20service." data-en="Book" target="_blank" rel="noopener">Agendar</a></div>
             </div>
           </article>
         </div>
@@ -422,9 +447,9 @@ svg.i{width:16px;height:16px;flex:none}
           <article class="card card-menu">
             <div class="cbody">
               <div class="menu-copy">
-                <span class="lbl">Cut · Beard · Brows</span>
-                <h3>A la carta</h3>
-                <p>Elige el servicio que necesitas, por separado.</p>
+                <span class="lbl" data-en="Cut · Beard · Brows">Corte · Barba · Cejas</span>
+                <h3 data-en="À la carte">A la carta</h3>
+                <p data-en="Choose the service you need, separately.">Elige el servicio que necesitas, por separado.</p>
               </div>
               <button type="button" class="pill pill-line" id="carta-btn" aria-expanded="false" aria-controls="carta"><span>Más información</span> <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
             </div>
@@ -435,84 +460,84 @@ svg.i{width:16px;height:16px;flex:none}
             <div class="cell rv" style="--i:0">
               <article class="card">
                 <div class="fig fig-vid fig-cut"><video muted loop playsinline preload="none" poster="img/pcut.webp" aria-hidden="true" tabindex="-1"><source src="media/cut.mp4" type="video/mp4"></video><div class="fig-in">
-                  <span class="lbl">Signature Cut</span>
-                  <p class="price"><span>desde</span><b class="foil">$75</b><span>USD</span></p>
+                  <span class="lbl" data-en="Tailored cut">Corte a tu medida</span>
+                  <p class="price"><span data-en="from">desde</span><b class="foil">$75</b><span>USD</span></p>
                 </div></div>
                 <div class="cbody">
-                  <h3>Corte</h3>
-                  <p>Diseñado para una imagen limpia, actual y bien ejecutada.</p>
-                  <div class="crow"><a class="pill pill-line" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20un%20corte." target="_blank" rel="noopener">Agendar</a></div>
+                  <h3 data-en="Cut">Corte</h3>
+                  <p data-en="Designed for a clean, current, well-executed look.">Diseñado para una imagen limpia, actual y bien ejecutada.</p>
+                  <div class="crow"><a class="pill pill-line" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20un%20corte." data-en-href="https://wa.me/573194477905?text=Hi%20Teban%2C%20I%27d%20like%20to%20book%20a%20haircut." data-en="Book" target="_blank" rel="noopener">Agendar</a></div>
                 </div>
               </article>
             </div>
             <div class="cell rv" style="--i:1">
               <article class="card">
                 <div class="fig fig-vid fig-cut fig-beard"><video muted loop playsinline preload="none" poster="img/pbeard.webp" aria-hidden="true" tabindex="-1"><source src="media/beard.mp4" type="video/mp4"></video><div class="fig-in">
-                  <span class="lbl">Beard Focus</span>
-                  <p class="price"><span>desde</span><b class="foil">$25</b><span>USD</span></p>
+                  <span class="lbl" data-en="Beard focus">Enfoque en barba</span>
+                  <p class="price"><span data-en="from">desde</span><b class="foil">$25</b><span>USD</span></p>
                 </div></div>
                 <div class="cbody">
-                  <h3>Barba</h3>
-                  <p>Líneas definidas, balance facial y un acabado elegante.</p>
-                  <div class="crow"><a class="pill pill-line" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20una%20barba." target="_blank" rel="noopener">Agendar</a></div>
+                  <h3 data-en="Beard">Barba</h3>
+                  <p data-en="Sharp lines, facial balance, and an elegant finish.">Líneas definidas, balance facial y un acabado elegante.</p>
+                  <div class="crow"><a class="pill pill-line" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20una%20barba." data-en-href="https://wa.me/573194477905?text=Hi%20Teban%2C%20I%27d%20like%20to%20book%20a%20beard%20service." data-en="Book" target="_blank" rel="noopener">Agendar</a></div>
                 </div>
               </article>
             </div>
             <div class="cell rv" style="--i:2">
               <article class="card">
                 <div class="fig fig-vid fig-cut fig-brow"><video muted loop playsinline preload="none" poster="img/pbrow.webp" aria-hidden="true" tabindex="-1"><source src="media/brow.mp4" type="video/mp4"></video><div class="fig-in">
-                  <span class="lbl">Detail Work</span>
-                  <p class="price"><span>desde</span><b class="foil">$5</b><span>USD</span></p>
+                  <span class="lbl" data-en="Detail work">Trabajo de detalle</span>
+                  <p class="price"><span data-en="from">desde</span><b class="foil">$5</b><span>USD</span></p>
                 </div></div>
                 <div class="cbody">
-                  <h3>Cejas</h3>
-                  <p>Perfilado limpio y natural que ordena la mirada.</p>
+                  <h3 data-en="Brows">Cejas</h3>
+                  <p data-en="A clean, natural shaping that frames the eyes.">Perfilado limpio y natural que ordena la mirada.</p>
                 </div>
               </article>
             </div>
           </div>
         </div>
       </div>
-      <p class="note rv">Una experiencia de barbería privada donde tu agenda lo disponga.</p>
+      <p class="note rv" data-en="A private barbershop experience wherever your schedule allows.">Una experiencia de barbería privada donde tu agenda lo disponga.</p>
     </div>
   </section>
 
   <section class="sec" id="accion">
     <div class="wrap">
       <div class="head rv">
-        <h2>Experiencia TebanBarber</h2>
-        <p>La barbería llega a tu espacio</p>
+        <h2 data-en="The TebanBarber Experience">Experiencia TebanBarber</h2>
+        <p data-en="The barbershop comes to your space">La barbería llega a tu espacio</p>
       </div>
       <div class="gal">
-        <figure class="shot rv" style="--i:0"><img class="img i2" src="img/p2.webp" alt="Teban perfilando el contorno de un cliente con una capa de Teban Barber" width="1000" height="1500" loading="lazy" decoding="async"><figcaption>Detalle y precisión</figcaption></figure>
-        <figure class="shot vid rv" style="--i:1" tabindex="0" role="button" aria-label="Pausar o reproducir el video de un corte en una sala con la estación portátil de Teban">
+        <figure class="shot rv" style="--i:0"><img class="img i2" src="img/p2.webp" alt="Teban perfilando el contorno de un cliente con una capa de Teban Barber" data-en-alt="Teban lining up a client’s hairline, draped in a Teban Barber cape" width="1000" height="1500" loading="lazy" decoding="async"><figcaption data-en="Detail &amp; Precision">Detalle y precisión</figcaption></figure>
+        <figure class="shot vid rv" style="--i:1" tabindex="0" role="button" aria-label="Pausar o reproducir el video de un corte en una sala con la estación portátil de Teban" data-en-aria-label="Pause or play the video of a haircut in a living room with Teban’s portable station">
           <video muted loop playsinline preload="none" poster="img/pv2.webp" aria-hidden="true" tabindex="-1"><source src="media/v2.mp4" type="video/mp4"></video>
-          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span><figcaption>En tu sala</figcaption>
+          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span><figcaption data-en="In Your Living Room">En tu sala</figcaption>
         </figure>
-        <figure class="shot rv" style="--i:2"><img class="img i3" src="img/p3.webp" alt="Teban cortando el cabello en una terraza, con su estación portátil de espejo y luces" width="1000" height="1499" loading="lazy" decoding="async"><figcaption>Estación propia, donde estés</figcaption></figure>
-        <figure class="shot rv" style="--i:0"><img class="img i4" src="img/p4.webp" alt="Teban junto a su maleta de Teban Barber frente a una vitrina de autos" width="800" height="1000" loading="lazy" decoding="async"><figcaption>Llega con todo</figcaption></figure>
-        <figure class="shot vid rv" style="--i:1" tabindex="0" role="button" aria-label="Pausar o reproducir el video de un corte en una terraza">
+        <figure class="shot rv" style="--i:2"><img class="img i3" src="img/p3.webp" alt="Teban cortando el cabello en una terraza, con su estación portátil de espejo y luces" data-en-alt="Teban cutting hair on a terrace, with his portable lighted-mirror station" width="1000" height="1499" loading="lazy" decoding="async"><figcaption data-en="Own Station, Wherever You Are">Estación propia, donde estés</figcaption></figure>
+        <figure class="shot rv" style="--i:0"><img class="img i4" src="img/p4.webp" alt="Teban junto a su maleta de Teban Barber frente a una vitrina de autos" data-en-alt="Teban beside his Teban Barber suitcase in front of a car showroom window" width="800" height="1000" loading="lazy" decoding="async"><figcaption data-en="Arrives Fully Equipped">Llega con todo</figcaption></figure>
+        <figure class="shot vid rv" style="--i:1" tabindex="0" role="button" aria-label="Pausar o reproducir el video de un corte en una terraza" data-en-aria-label="Pause or play the video of a haircut on a terrace">
           <video muted loop playsinline preload="none" poster="img/pv1.webp" aria-hidden="true" tabindex="-1"><source src="media/v1.mp4" type="video/mp4"></video>
-          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span><figcaption>Cada detalle cuenta</figcaption>
+          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span><figcaption data-en="Every Detail Counts">Cada detalle cuenta</figcaption>
         </figure>
-        <figure class="shot rv" style="--i:2"><img class="img i5" src="img/p5.webp" alt="Teban preparando su estación portátil con espejo y luces" width="800" height="1000" loading="lazy" decoding="async"><figcaption>Todo en su lugar</figcaption></figure>
+        <figure class="shot rv" style="--i:2"><img class="img i5" src="img/p5.webp" alt="Teban preparando su estación portátil con espejo y luces" data-en-alt="Teban setting up his portable mirror-and-lights station" width="800" height="1000" loading="lazy" decoding="async"><figcaption data-en="Everything in Its Place">Todo en su lugar</figcaption></figure>
       </div>
-      <p class="hint rv" aria-hidden="true">Desliza para ver más</p>
+      <p class="hint rv" aria-hidden="true" data-en="Swipe to see more">Desliza para ver más</p>
     </div>
   </section>
 
   <section class="sec" id="reservas">
     <div class="wrap">
       <div class="head rv">
-        <h2>Tu experiencia comienza aquí</h2>
-        <p>Atención directa, sin intermediarios</p>
+        <h2 data-en="Your experience starts here">Tu experiencia comienza aquí</h2>
+        <p data-en="Direct attention, no middlemen">Atención directa, sin intermediarios</p>
       </div>
       <ol class="steps">
-        <li class="rv" style="--i:0"><span class="n">01</span><div><h3>Solicita tu cita</h3><p>Escríbeme al WhatsApp con el servicio que deseas y la fecha que prefieres.</p></div></li>
-        <li class="rv" style="--i:1"><span class="n">02</span><div><h3>Confirmamos los detalles</h3><p>Definimos juntos el día, la hora y el lugar. Cada cita la confirmo personalmente.</p></div></li>
-        <li class="rv" style="--i:2"><span class="n">03</span><div><h3>Llego a donde estés</h3><p>Con mi estación completa a tu casa, oficina, finca u hotel. Tú solo te sientas y te relajas.</p></div></li>
+        <li class="rv" style="--i:0"><span class="n">01</span><div><h3 data-en="Request your appointment">Solicita tu cita</h3><p data-en="Message me on WhatsApp with the service you want and your preferred date.">Escríbeme al WhatsApp con el servicio que deseas y la fecha que prefieres.</p></div></li>
+        <li class="rv" style="--i:1"><span class="n">02</span><div><h3 data-en="We confirm the details">Confirmamos los detalles</h3><p data-en="We set the day, time, and place together. I confirm every appointment personally.">Definimos juntos el día, la hora y el lugar. Cada cita la confirmo personalmente.</p></div></li>
+        <li class="rv" style="--i:2"><span class="n">03</span><div><h3 data-en="I come to you">Llego a donde estés</h3><p data-en="With my full station to your home, office, country estate, or hotel. You just sit back and relax.">Con mi estación completa a tu casa, oficina, finca u hotel. Tú solo te sientas y te relajas.</p></div></li>
       </ol>
-      <div class="steps-cta rv"><a class="pill" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20una%20cita%20de%20barber%C3%ADa%20privada." target="_blank" rel="noopener">Reservar <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+      <div class="steps-cta rv"><a class="pill" href="https://wa.me/573194477905?text=Hola%20Teban%2C%20quiero%20reservar%20una%20cita%20de%20barber%C3%ADa%20privada." data-en-href="https://wa.me/573194477905?text=Hi%20Teban%2C%20I%27d%20like%20to%20book%20a%20private%20barbershop%20appointment." target="_blank" rel="noopener"><span data-en="Book">Reservar</span> <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
     </div>
   </section>
 
@@ -523,16 +548,16 @@ svg.i{width:16px;height:16px;flex:none}
   <div class="col rv">
     <h3 class="brand foil">Teban Barber</h3>
     <div class="social">
-      <a href="https://www.instagram.com/tebanbarber_716" target="_blank" rel="noopener" aria-label="Instagram de Teban Barber"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg></a>
-      <a href="https://www.tiktok.com/@tebanbarber_716" target="_blank" rel="noopener" aria-label="TikTok de Teban Barber"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.2a3.2 3.2 0 1 1-3.2-3.2M14 4c.4 2.3 1.9 3.8 4.2 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+      <a href="https://www.instagram.com/tebanbarber_716" target="_blank" rel="noopener" aria-label="Instagram de Teban Barber" data-en-aria-label="Teban Barber on Instagram"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg></a>
+      <a href="https://www.tiktok.com/@tebanbarber_716" target="_blank" rel="noopener" aria-label="TikTok de Teban Barber" data-en-aria-label="Teban Barber on TikTok"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.2a3.2 3.2 0 1 1-3.2-3.2M14 4c.4 2.3 1.9 3.8 4.2 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
     </div>
-    <a class="tel" href="https://wa.me/573194477905" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp al +57 319 447 7905">+57 319 447 7905</a>
-    <p class="muted">2026 © Todos los derechos reservados</p>
+    <a class="tel" href="https://wa.me/573194477905" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp al +57 319 447 7905" data-en-aria-label="Message on WhatsApp at +57 319 447 7905">+57 319 447 7905</a>
+    <p class="muted" data-en="2026 © All rights reserved">2026 © Todos los derechos reservados</p>
   </div>
 </footer>
 
-<a class="badge" id="badge" href="https://www.instagram.com/tebanbarber_716" target="_blank" rel="noopener" aria-label="Ver el trabajo en Instagram, @tebanbarber_716">
-  <svg class="ring" viewBox="0 0 140 140" aria-hidden="true"><defs><path id="circ" d="M70,70 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs><text><textPath href="#circ" textLength="320" lengthAdjust="spacing">Ver trabajo · Instagram · @tebanbarber_716 · </textPath></text></svg>
+<a class="badge" id="badge" href="https://www.instagram.com/tebanbarber_716" target="_blank" rel="noopener" aria-label="Ver el trabajo en Instagram, @tebanbarber_716" data-en-aria-label="See the work on Instagram, @tebanbarber_716">
+  <svg class="ring" viewBox="0 0 140 140" aria-hidden="true"><defs><path id="circ" d="M70,70 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs><text><textPath href="#circ" textLength="320" lengthAdjust="spacing" data-en="See work · Instagram · @tebanbarber_716 · ">Ver trabajo · Instagram · @tebanbarber_716 · </textPath></text></svg>
   <svg class="i" aria-hidden="true"><use href="#i-out"/></svg>
 </a>
 
@@ -541,6 +566,35 @@ svg.i{width:16px;height:16px;flex:none}
   var d=document,w=window,root=d.documentElement;
   var reduce=false;try{reduce=w.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
   var hero=d.getElementById('inicio'),badge=d.getElementById('badge'),foot=d.querySelector('.foot');
+
+  /* idioma: español por defecto; el visitante elige español o inglés (el texto en inglés vive en los atributos data-en*) */
+  var lang='es',EN_AT=['aria-label','alt','title','href'];
+  var CARTA={es:['Más información','Menos información'],en:['More info','Less info']};
+  function cartaLabel(){
+    var b=d.getElementById('carta-btn'),t=b&&b.querySelector('span');
+    if(t)t.textContent=CARTA[lang][b.getAttribute('aria-expanded')==='true'?1:0];
+  }
+  function setLang(l){
+    lang=l;root.lang=l;
+    [].slice.call(d.querySelectorAll('[data-en],[data-en-aria-label],[data-en-alt],[data-en-title],[data-en-href]')).forEach(function(el){
+      var o=el.__es;
+      if(!o){
+        o=el.__es={html:el.innerHTML,at:{}};
+        EN_AT.forEach(function(a){if(el.hasAttribute('data-en-'+a))o.at[a]=el.getAttribute(a)});
+      }
+      if(el.hasAttribute('data-en'))el.innerHTML=l==='en'?el.getAttribute('data-en'):o.html;
+      for(var a in o.at)el.setAttribute(a,l==='en'?el.getAttribute('data-en-'+a):o.at[a]);
+    });
+    [].slice.call(d.querySelectorAll('[data-lang]')).forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-lang')===l?'true':'false')});
+    cartaLabel();
+    if(typeof place==='function'&&links){var a=links.filter(function(x){return x.getAttribute('data-id')===current})[0];place(a||null)}
+  }
+  [].slice.call(d.querySelectorAll('[data-lang]')).forEach(function(b){
+    b.addEventListener('click',function(){
+      setLang(b.getAttribute('data-lang'));
+      var lp=d.getElementById('langpick');if(lp)lp.classList.add('done');
+    });
+  });
 
   /* revelado al entrar en pantalla */
   var items=[].slice.call(d.querySelectorAll('.rv'));
@@ -650,7 +704,7 @@ svg.i{width:16px;height:16px;flex:none}
     cb.addEventListener('click',function(){
       var open=cw.hidden;cw.hidden=!open;
       cb.setAttribute('aria-expanded',open?'true':'false');
-      var t=cb.querySelector('span');if(t)t.textContent=open?'Menos información':'Más información';
+      cartaLabel();
     });
   }
 
